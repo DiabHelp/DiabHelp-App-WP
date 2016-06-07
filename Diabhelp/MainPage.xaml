@@ -6,5 +6,5 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Width="363">
-    <Frame x:Name="mainFrame" Content="Frame" HorizontalAlignment="Left" VerticalAlignment="Top" Width="360" Height="640"/>
+    <Frame x:Name="mainFrame" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="360" Height="640"/>
 </Page>

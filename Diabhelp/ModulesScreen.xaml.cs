@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -21,18 +20,16 @@ namespace Diabhelp
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class LoginScreen : Page
+    public sealed partial class ModulesScreen : Page
     {
-        public LoginScreen()
+        public ModulesScreen()
         {
             this.InitializeComponent();
         }
 
-      
-        private void connect_button_Click(object sender, RoutedEventArgs e)
+        private void button_Click(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("login_clicked ok");
-            this.Frame.Navigate(typeof(ModulesScreen));
+
         }
     }
 }

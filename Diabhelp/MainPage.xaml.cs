@@ -45,8 +45,9 @@ namespace Diabhelp
             Window.Current.Activate();
             */
             Debug.WriteLine("navigate ok");
-            Loaded += (s, e) =>
+            Loaded += async (s, e) =>
             {
+                await System.Threading.Tasks.Task.Delay(1000);
                 mainFrame.Navigate(typeof(LoginScreen), null);
 
             };
