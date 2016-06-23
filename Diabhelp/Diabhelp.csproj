@@ -98,8 +98,16 @@
     <Compile Include="LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ModuleLayout.xaml.cs">
+      <DependentUpon>ModuleLayout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ModulesScreen.xaml.cs">
       <DependentUpon>ModulesScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\IModule.cs" />
+    <Compile Include="Modules\ModuleTest\ModuleTest.cs" />
+    <Compile Include="Modules\ModuleTest\ModuleTestPage.xaml.cs">
+      <DependentUpon>ModuleTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SplashScreen.xaml.cs">
       <DependentUpon>SplashScreen.xaml</DependentUpon>
@@ -130,13 +138,20 @@
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="LoginScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ModuleLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ModulesScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\ModuleTest\ModuleTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

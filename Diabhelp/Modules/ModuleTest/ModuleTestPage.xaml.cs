@@ -15,22 +15,16 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Diabhelp
+namespace Diabhelp.Modules.ModuleTest
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SplashScreen : Page
+    public sealed partial class ModuleTestPage : Page
     {
-        public SplashScreen()
+        public ModuleTestPage()
         {
             this.InitializeComponent();
-            Loaded += async (s, e) =>
-            {
-                await System.Threading.Tasks.Task.Delay(1500);
-                this.Frame.Navigate(typeof(LoginScreen), null);
-
-            };
         }
     }
 }

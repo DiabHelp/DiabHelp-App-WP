@@ -31,28 +31,16 @@ namespace Diabhelp
         {
             this.InitializeComponent();
             mainFrame.Navigate(typeof(SplashScreen));
-            //Window.Current.Content = mainFrame;
-            // You have to activate the window in order to show it later.
-            //Window.Current.Activate();
-            //loadSplashScreen();
-
-
-            /*
-            Frame frame = new Frame();
-            Debug.WriteLine("Init ok,Test navigate");
-            frame.Navigate(typeof(SplashScreen), null);
-            Window.Current.Content = frame;
-            Window.Current.Activate();
-            */
             Debug.WriteLine("navigate ok");
             Loaded += async (s, e) =>
             {
-                await System.Threading.Tasks.Task.Delay(1000);
+                await System.Threading.Tasks.Task.Delay(2000);
                 mainFrame.Navigate(typeof(LoginScreen), null);
 
             };
         }
 
+        //not used for now
         private async void loadSplashScreen()
         {
             CoreApplicationView newView = CoreApplication.CreateNewView();

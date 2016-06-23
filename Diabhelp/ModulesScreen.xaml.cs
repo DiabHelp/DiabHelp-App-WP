@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Diabhelp.Modules;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -18,18 +21,42 @@ using Windows.UI.Xaml.Navigation;
 namespace Diabhelp
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Module Screen page
     /// </summary>
+
     public sealed partial class ModulesScreen : Page
     {
+        private ArrayList moduleList;
+        private Frame rootFrame;
         public ModulesScreen()
         {
             this.InitializeComponent();
+            rootFrame = (Frame)Window.Current.Content;
+            loadModules();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void loadModules()
         {
+            moduleList = new ArrayList();
+            Debug.WriteLine("enter LoadModule");
 
+            moduleList.Add(new Modules.ModuleTest.ModuleTest());
+            displayModuleList();
+        }
+
+        private void displayModuleList()
+        {
+            Debug.WriteLine("enter displayModuleList");
+            if (moduleList != null  && moduleList.Count > 0)
+            {
+                foreach (IModule module in moduleList)
+                {
+                    Debug.WriteLine("enter foreach moduleList : ");
+                    Debug.WriteLine(module.getName());
+                    ModuleLayout view = new ModuleLayout(module, rootFrame);
+                    modulesGrid.Children.Add(view);
+                }
+            }
         }
     }
 }
