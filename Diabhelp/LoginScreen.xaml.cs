@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Net.Http;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
@@ -29,10 +30,28 @@ namespace Diabhelp
         }
 
       
-        private void connect_button_Click(object sender, RoutedEventArgs e)
+        private async void connect_button_Click(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine("login_clicked ok");
-            this.Frame.Navigate(typeof(ModulesScreen));
+            HttpClient client = new HttpClient();
+
+            try
+            {
+                TextBox login = (TextBox)login_input;
+                TextBox password = (TextBox)pass_input;
+              
+                HttpResponseMessage response = await client.GetAsync("http://www.naquedounet.fr/");
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                Debug.WriteLine(responseBody);
+                if (responseBody != "")
+                {
+                    this.Frame.Navigate(typeof(ModulesScreen));
+                }
+            } catch(HttpRequestException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
     }
 }
