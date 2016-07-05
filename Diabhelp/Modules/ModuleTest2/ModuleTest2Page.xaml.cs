@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -16,23 +15,16 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Diabhelp
+namespace Diabhelp.Modules.ModuleTest2
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class LoginScreen : Page
+    public sealed partial class ModuleTest2Page : Page
     {
-        public LoginScreen()
+        public ModuleTest2Page()
         {
             this.InitializeComponent();
-        }
-
-      
-        private void connect_button_Click(object sender, RoutedEventArgs e)
-        {
-            Debug.WriteLine("login_clicked ok");
-            this.Frame.Navigate(typeof(ModulesScreen));
         }
     }
 }

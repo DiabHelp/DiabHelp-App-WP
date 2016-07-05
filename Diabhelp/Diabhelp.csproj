@@ -95,25 +95,40 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LoginScreen.xaml.cs">
+    <Compile Include="Core\CatalogueModuleLayout.xaml.cs">
+      <DependentUpon>CatalogueModuleLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\CatalogueScreen.xaml.cs">
+      <DependentUpon>CatalogueScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ModuleLayout.xaml.cs">
+    <Compile Include="Core\ModuleLayout.xaml.cs">
       <DependentUpon>ModuleLayout.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ModulesScreen.xaml.cs">
+    <Compile Include="Core\MainScreen.xaml.cs">
+      <DependentUpon>MainScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\ModuleLoader.cs" />
+    <Compile Include="Core\ModulesScreen.xaml.cs">
       <DependentUpon>ModulesScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\IModule.cs" />
+    <Compile Include="Modules\ModuleTest3\ModuleTest3.cs" />
+    <Compile Include="Modules\ModuleTest3\ModuleTest3Page.xaml.cs">
+      <DependentUpon>ModuleTest3Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ModuleTest2\ModuleTest2.cs" />
+    <Compile Include="Modules\ModuleTest2\ModuleTest2Page.xaml.cs">
+      <DependentUpon>ModuleTest2Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\ModuleTest\ModuleTest.cs" />
     <Compile Include="Modules\ModuleTest\ModuleTestPage.xaml.cs">
       <DependentUpon>ModuleTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SplashScreen.xaml.cs">
+    <Compile Include="Core\SplashScreen.xaml.cs">
       <DependentUpon>SplashScreen.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -126,6 +141,7 @@
   <ItemGroup>
     <Content Include="Assets\diab_logo.png" />
     <Content Include="Assets\diab_logo_max.png" />
+    <Content Include="Assets\diab_logo_transparent.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -139,30 +155,49 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="LoginScreen.xaml">
+    <Page Include="Core\CatalogueModuleLayout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ModuleLayout.xaml">
+    <Page Include="Core\CatalogueScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ModulesScreen.xaml">
+    <Page Include="Core\LoginScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Core\ModuleLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Core\MainScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Core\ModulesScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\ModuleTest3\ModuleTest3Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modules\ModuleTest2\ModuleTest2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Modules\ModuleTest\ModuleTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SplashScreen.xaml">
+    <Page Include="Core\SplashScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Values\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

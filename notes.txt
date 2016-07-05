@@ -1,0 +1,6 @@
+NOTES APP WP:
+
+Séparer le vrai module avec un ModuleInfo ?
+	- ModuleInfo contenu dans le module ?
+	- Ou le ModuleInfo donne juste les infos pour instancier le module
+		(Ca semble mieux)

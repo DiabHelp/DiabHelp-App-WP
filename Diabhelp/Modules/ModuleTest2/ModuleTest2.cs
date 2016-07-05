@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace Diabhelp.Modules.ModuleTest
+namespace Diabhelp.Modules.ModuleTest2
 {
     /// <summary>
     /// Test Module loader class
     /// </summary>
 
-    class ModuleTest : IModule
+    class ModuleTest2 : IModule
     {
         private Frame frame;
-        private String name = "ModuleTest";
+        private String name = "ModuleTest2";
         private Uri iconSource = null;
-        public ModuleTest()
+        public ModuleTest2()
         {
             Debug.WriteLine("ModuleTest init");
             iconSource = new Uri("ms-appx:///Assets/diab_logo_transparent.png");
@@ -38,27 +38,27 @@ namespace Diabhelp.Modules.ModuleTest
 
         public void start()
         {
-            Debug.WriteLine("ModuleTest navigate");
+            Debug.WriteLine("ModuleTest2 navigate");
             if (this.frame != null)
-                this.frame.Navigate(typeof(ModuleTestPage));
+                this.frame.Navigate(typeof(ModuleTest2Page));
             else
-                Debug.WriteLine("You fucked up : this.frame of ModuleTest is null");
-            Debug.WriteLine("ModuleTest navigate OK");
+                Debug.WriteLine("You fucked up : this.frame of ModuleTest2 is null");
+            Debug.WriteLine("ModuleTest2 navigate OK");
         }
 
         public void start(Frame frame)
         {
-            Debug.WriteLine("ModuleTest navigate 2nd function");
+            Debug.WriteLine("ModuleTest2 navigate 2nd function");
             if (frame != null)
-                frame.Navigate(typeof(ModuleTestPage));
+                frame.Navigate(typeof(ModuleTest2Page));
             else
-                Debug.WriteLine("You fucked up : this.frame of ModuleTest is null");
-            Debug.WriteLine("ModuleTest navigate OK");
+                Debug.WriteLine("You fucked up : this.frame of ModuleTest2 is null");
+            Debug.WriteLine("ModuleTest2 navigate OK");
         }
 
         public void setFrame(Frame frame)
         {
-            Debug.WriteLine("ModuleTest setFrame");
+            Debug.WriteLine("ModuleTest2 setFrame");
             if (frame == null)
                 Debug.WriteLine("WTF : Tu me donne une frame nulle dans setFrame, ok, connard");
             this.frame = frame;

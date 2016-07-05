@@ -1,0 +1,18 @@
+﻿<UserControl
+    x:Class="Diabhelp.Core.CatalogueModuleLayout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Diabhelp.Core"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="180"
+    d:DesignWidth="150">
+
+    <StackPanel Background="#FF37D353">
+
+        <Image x:Name="moduleIcon" ImageFailed="onImageFailed"  Loaded="Image_Loaded" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="100" Height="100"/>
+        <TextBlock x:Name="moduleName" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="ModuleName" VerticalAlignment="Center"/>
+        <CheckBox x:Name="activateCheckBox" Checked="activateCheckBox_Checked" Content="Activate" HorizontalAlignment="Center" VerticalAlignment="Center" x:FieldModifier="public"/>
+    </StackPanel>
+</UserControl>

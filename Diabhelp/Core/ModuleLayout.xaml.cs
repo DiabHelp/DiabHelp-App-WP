@@ -24,26 +24,35 @@ namespace Diabhelp
     {
         IModule module;
 
-        public ModuleLayout(IModule module, Frame frame)
+        public ModuleLayout(IModule module)
         {
             this.InitializeComponent();
             Debug.WriteLine("ModuleLayout init 2nd constructor");
             this.module = module;
-            this.module.setFrame(frame);
+            this.module.setFrame(Window.Current.Content as Frame);
             this.moduleName.Text = module.getName();
             Debug.WriteLine("ModuleLayout init 2nd constructor end");
 
         }
 
-        public ModuleLayout(String name, Uri iconSource)
+        void Image_Loaded(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("ModuleLayout init");
-            this.InitializeComponent();
-            this.moduleName.Text = name;
-            //this.moduleIcon.Source = new BitmapImage(iconSource);
-            Debug.WriteLine("ModuleLayout init ok");
+            Debug.WriteLine("Enter Image loaded");
+            BitmapImage bitmapImage = new BitmapImage(this.module.getIconSource());
+            this.moduleIcon.Source = bitmapImage;
+            Debug.WriteLine("End Image loaded");
 
         }
+
+        void onImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+          Debug.WriteLine("Enter onImageFailed : " + e.ErrorMessage);
+          BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///Assets/diab_logo_transparent.png"));
+          this.moduleIcon.Source = bitmapImage;
+          Debug.WriteLine("End onImagedFailed");
+
+        }
+
 
         private void launchModuleBtn_Click(object sender, RoutedEventArgs e)
         {

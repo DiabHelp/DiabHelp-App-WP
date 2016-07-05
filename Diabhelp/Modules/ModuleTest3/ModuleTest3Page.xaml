@@ -1,0 +1,19 @@
+﻿<Page
+    x:Class="Diabhelp.Modules.ModuleTest3.ModuleTest3Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Diabhelp.Modules.ModuleTestPage"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="{StaticResource Background_Color_Diabhelp}"/>
+        </Grid.Background>
+
+        <Image x:Name="Diabhelp_Logo" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Source="ms-appx:///Assets/diab_logo_max.png" Width="250"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="10,499,0,0" TextWrapping="Wrap" Text="Test Module 3" VerticalAlignment="Top" Foreground="#FFAA1111" FontSize="36"/>
+
+    </Grid>
+</Page>
