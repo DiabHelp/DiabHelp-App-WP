@@ -39,44 +39,6 @@ namespace Diabhelp.Core
             this.InitializeComponent();
         }
 
-
-        /* // CLEANUP
-        private void loadModules()
-        {
-            moduleList = new List<IModule>();
-            Debug.WriteLine("enter LoadModule");
-
-            // On ajoute les modules à la liste des modules
-
-
-            // Get la liste des modules activés
-            //TODO : Get ça depuis le catalogue.
-            // (JSON ? AppData ?)
-            String[] classNames = new string[] { "ModuleTest", "ModuleTest2", "ModuleTest3", "ModuleTest2", "ModuleTest2", "ModuleTest2", "ModuleTest2" };
-
-            IModule module;
-
-            // Instancie une classe par module loadé
-
-            foreach (String name in classNames)
-            {
-                Debug.WriteLine("Loading module : " + name);
-                Type type = Type.GetType("Diabhelp.Modules." + name + "." + name);
-                if (type != null)
-                {
-                    module = (IModule)Activator.CreateInstance(type);
-                    moduleList.Add(module);
-                }
-                else // DEBUG 
-                {
-                    Debug.WriteLine("Failed to load module : " + name);
-                }
-            }
-
-            //displayModuleList();
-        }
-        */
-
         private void displayModuleList(List<IModule> moduleList)
         {
             if (nestedPaneList == null)
@@ -105,7 +67,7 @@ namespace Diabhelp.Core
                     int position = (int)Math.Ceiling((decimal)(i + 1) / ROW_SIZE) - 1;
                     Debug.WriteLine("ModuleLayout position : " + position);
 
-                    // On crée l'objet graphique lié au module, et on lui donne sa classe et la frame principale
+                    // On crée l'objet graphique lié au module, et on lui donne sa classe
                     ModuleLayout view = new ModuleLayout(module);
                     nestedPaneList[position].Children.Add(view);
                     Debug.WriteLine("end foreach moduleList");
@@ -126,7 +88,7 @@ namespace Diabhelp.Core
             if (moduleLoader != null)
             {
                 Debug.WriteLine("ModuleScreen::displayModuleList");
-
+                // Ici c'est ok d'instancier le module vu que c'est pour launch
                 displayModuleList(moduleLoader.getLoadedModules());
             }
         }

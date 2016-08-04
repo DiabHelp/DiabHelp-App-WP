@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Diabhelp.Core;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -120,7 +121,8 @@ namespace Diabhelp
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
+            //Save module list
+            ModuleLoader.Instance.saveModuleList();
             deferral.Complete();
         }
 

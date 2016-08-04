@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Diabhelp.Core;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -26,7 +27,6 @@ namespace Diabhelp
     public sealed partial class MainScreen : Page
     {
         private Frame rootFrame;
-        private Core.ModuleLoader moduleLoader = new Core.ModuleLoader();
         public MainScreen()
         {
             Debug.WriteLine("MainScreen Constructeur begin");
@@ -40,7 +40,7 @@ namespace Diabhelp
         {
             Debug.WriteLine("on_Subframe_Loaded");
             Debug.WriteLine("frame : " + mainScreenFrame + " test type : " + typeof(Core.ModulesScreen));
-            mainScreenFrame.Navigate(typeof(Core.ModulesScreen), moduleLoader);
+            mainScreenFrame.Navigate(typeof(Core.ModulesScreen), ModuleLoader.Instance);
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -59,13 +59,19 @@ namespace Diabhelp
         //TODO : check si on y est déjà
         private void accueilButton_Click(object sender, RoutedEventArgs e)
         {
-            mainScreenFrame.Navigate(typeof(Core.ModulesScreen), moduleLoader);
+            mainScreenFrame.Navigate(typeof(Core.ModulesScreen), ModuleLoader.Instance);
         }
 
         //TODO : check si on y est déjà
         private void catalogueButton_Click(object sender, RoutedEventArgs e)
         {
-            mainScreenFrame.Navigate(typeof(Core.CatalogueScreen), moduleLoader);
+            mainScreenFrame.Navigate(typeof(Core.CatalogueScreen), ModuleLoader.Instance);
+        }
+
+
+        private void menuButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainScreenFrame.Navigate(typeof(Core.ParametresScreen));
         }
     }
 }

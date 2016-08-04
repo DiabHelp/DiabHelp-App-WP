@@ -33,6 +33,8 @@ namespace Diabhelp
         private async void connect_button_Click(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine("login_clicked ok");
+            this.Frame.Navigate(typeof(MainScreen));
+            return; //TODO DEBUG CACA PAS PROPRE ON VIRE CA
             HttpClient client = new HttpClient();
 
             try
@@ -43,10 +45,10 @@ namespace Diabhelp
                 HttpResponseMessage response = await client.GetAsync("http://www.naquedounet.fr/");
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
-                Debug.WriteLine(responseBody);
+                //Debug.WriteLine(responseBody);
                 if (responseBody != "")
                 {
-                    this.Frame.Navigate(typeof(ModulesScreen));
+                    this.Frame.Navigate(typeof(MainScreen));
                 }
             } catch(HttpRequestException ex)
             {

@@ -13,6 +13,6 @@
 
         <Image x:Name="moduleIcon" ImageFailed="onImageFailed"  Loaded="Image_Loaded" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="100" Height="100"/>
         <TextBlock x:Name="moduleName" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="ModuleName" VerticalAlignment="Center"/>
-        <CheckBox x:Name="activateCheckBox" Checked="activateCheckBox_Checked" Content="Activate" HorizontalAlignment="Center" VerticalAlignment="Center" x:FieldModifier="public"/>
+        <CheckBox x:Name="activateCheckBox" Checked="activateCheckBox_Checked" Content="Activer" HorizontalAlignment="Center" VerticalAlignment="Center" x:FieldModifier="public"/>
     </StackPanel>
 </UserControl>

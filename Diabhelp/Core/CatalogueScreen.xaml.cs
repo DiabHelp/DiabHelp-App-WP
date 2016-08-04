@@ -31,56 +31,16 @@ namespace Diabhelp.Core
         private List<StackPanel> nestedPaneList;
         private List<IModule> moduleList;
         private ArrayList loadedModuleList = new ArrayList();
-        private ModuleLoader moduleLoader;
         Frame mainScreenFrame;
 
         public CatalogueScreen()
         {
             this.InitializeComponent();
-            //loadModules();
         }
-
-        /*
-        //TODO : Cleanup boilerplate code here
-        private void loadModules()
-        {
-            moduleList = new List<IModule>();
-            Debug.WriteLine("enter LoadModule");
-
-            // On ajoute les modules à la liste des modules
-
-
-            // Get la liste des modules activés
-            //TODO : Get ça depuis le catalogue.
-            // (JSON ? AppData ?)
-            String[] classNames = new string[] { "ModuleTest", "ModuleTest2", "ModuleTest3", "ModuleTest2", "ModuleTest2", "ModuleTest2", "ModuleTest2" };
-
-            IModule module;
-
-            // Instancie une classe par module loadé
-
-            foreach (String name in classNames)
-            {
-                Debug.WriteLine("Loading module : " + name);
-                Type type = Type.GetType("Diabhelp.Modules." + name + "." + name);
-                if (type != null)
-                {
-                    module = (IModule)Activator.CreateInstance(type);
-                    moduleList.Add(module);
-                }
-                else // DEBUG 
-                {
-                    Debug.WriteLine("Failed to load module : " + name);
-                }
-            }
-
-            displayModuleList();
-        }
-        */
 
         //TODO : GROS cleanup
         // Move la logique de load/display(?) dans une classe à part ?
-        private void displayModuleList(List<IModule> moduleList, ArrayList loadedModules)
+        private void displayModuleList(List<IModuleInfo> moduleList)
         {
             if (nestedPaneList == null)
                 nestedPaneList = new List<StackPanel>();
@@ -100,9 +60,9 @@ namespace Diabhelp.Core
             {
                 for (int i = 0; i < moduleList.Count; i++)
                 {
-                    IModule module = moduleList[i] as IModule;
+                    IModuleInfo module = moduleList[i] as IModuleInfo;
                     Debug.WriteLine("enter foreach moduleList : ");
-                    Debug.WriteLine(module.getName());
+                    Debug.WriteLine(module.Name);
 
                     // Calcul de la position du ModuleLayout
                     int position = (int)Math.Ceiling((decimal)(i + 1) / ROW_SIZE) - 1;
@@ -112,12 +72,9 @@ namespace Diabhelp.Core
                     CatalogueModuleLayout view = new CatalogueModuleLayout(module);
 
                     // On cable les events de la checkbox (Qu'on a passé en public dans le XAML avec x:FieldModifier="public") au add/remove du ModuleLoader
-                    view.activateCheckBox.Checked += (sender, e) => moduleLoader.addModule(module.getName()) ;
-                    view.activateCheckBox.Unchecked+= (sender, e) => moduleLoader.removeModule(module.getName()) ;
-                    if (loadedModules.Contains(module.getName()))
-                    {
-                        view.activateCheckBox.IsChecked = true;
-                    }
+                    view.activateCheckBox.Checked += (sender, e) => ModuleLoader.Instance.addModule(module.Name) ;
+                    view.activateCheckBox.Unchecked+= (sender, e) => ModuleLoader.Instance.removeModule(module.Name);
+                    view.activateCheckBox.IsChecked = module.Loaded;
                     nestedPaneList[position].Children.Add(view);
                     Debug.WriteLine("end foreach moduleList");
 
@@ -135,11 +92,7 @@ namespace Diabhelp.Core
 
             base.OnNavigatedFrom(e);
 
-            if (this.moduleLoader == null && e.Parameter != null)
-            {
-                this.moduleLoader = e.Parameter as ModuleLoader;
-                displayModuleList(moduleLoader.getAvailableModules(), moduleLoader.getLoadedModulesInfo());
-            }
+            displayModuleList(ModuleLoader.Instance.getAvailableModulesInfo());
         }
     }
 }

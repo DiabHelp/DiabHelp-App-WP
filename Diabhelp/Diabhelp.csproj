@@ -114,7 +114,26 @@
     <Compile Include="Core\ModulesScreen.xaml.cs">
       <DependentUpon>ModulesScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Core\ParametresScreen.xaml.cs">
+      <DependentUpon>ParametresScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\ProfilScreen.xaml.cs">
+      <DependentUpon>ProfilScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Glucocompteur\Glucocompteur.cs" />
+    <Compile Include="Modules\Glucocompteur\GlucocompteurAlimentScreen.xaml.cs">
+      <DependentUpon>GlucocompteurAlimentScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Glucocompteur\GlucocompteurInfo.cs" />
+    <Compile Include="Modules\Glucocompteur\GlucocompteurMainScreen.xaml.cs">
+      <DependentUpon>GlucocompteurMainScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Glucocompteur\GlucocompteurMenuScreen.xaml.cs">
+      <DependentUpon>GlucocompteurMenuScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\IModule.cs" />
+    <Compile Include="Modules\IModuleInfo.cs" />
+    <Compile Include="Modules\ModuleTest2\ModuleTest2Info.cs" />
     <Compile Include="Modules\ModuleTest3\ModuleTest3.cs" />
     <Compile Include="Modules\ModuleTest3\ModuleTest3Page.xaml.cs">
       <DependentUpon>ModuleTest3Page.xaml</DependentUpon>
@@ -123,7 +142,9 @@
     <Compile Include="Modules\ModuleTest2\ModuleTest2Page.xaml.cs">
       <DependentUpon>ModuleTest2Page.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\ModuleTest3\ModuleTest3Info.cs" />
     <Compile Include="Modules\ModuleTest\ModuleTest.cs" />
+    <Compile Include="Modules\ModuleTest\ModuleTestInfo.cs" />
     <Compile Include="Modules\ModuleTest\ModuleTestPage.xaml.cs">
       <DependentUpon>ModuleTestPage.xaml</DependentUpon>
     </Compile>
@@ -176,6 +197,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Core\ModulesScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Core\ParametresScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Core\ProfilScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Glucocompteur\GlucocompteurAlimentScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Glucocompteur\GlucocompteurMainScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modules\Glucocompteur\GlucocompteurMenuScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,44 @@
+﻿<Page
+    x:Class="Diabhelp.Core.ProfilScreen"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Diabhelp.Core"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Image x:Name="diabhelpLogo" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" Source="ms-appx:///Assets/diab_logo_max.png" Width="250" Height="250"/>
+        <Grid x:Name="profileGrid" Margin="0" Width="360" Grid.Row="1" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="nomInput" TextWrapping="Wrap" Text="" VerticalAlignment="Top" PlaceholderText="Nom"/>
+            <TextBox x:Name="prenomInput" Grid.Column="1" Margin="0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" PlaceholderText="Prénom"/>
+            <TextBox x:Name="birthdateInput" Margin="0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Row="1" PlaceholderText="Date de naissance"/>
+            <TextBox x:Name="emailInput" Margin="0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" PlaceholderText="Email"/>
+            <TextBox x:Name="phoneInput" Margin="0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Row="2" PlaceholderText="Numéro de Téléphone"/>
+            <TextBox x:Name="organismeInput" Margin="0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1" PlaceholderText="Organisme"/>
+            <PasswordBox x:Name="passwordBox" Margin="0" Grid.Row="3" VerticalAlignment="Top" PlaceholderText="Mot de passe"/>
+            <PasswordBox x:Name="passwordconfirmBox" Margin="0" Grid.Row="3" VerticalAlignment="Top" PlaceholderText="Confirmation" Grid.Column="1"/>
+            <Button x:Name="confirmButton" Content="Modifier" HorizontalAlignment="Stretch" Margin="0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2">
+                <Button.Background>
+                    <SolidColorBrush Color="{StaticResource Background_Color_Diabhelp}"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+
+    </Grid>
+</Page>

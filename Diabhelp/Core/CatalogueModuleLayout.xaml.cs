@@ -24,14 +24,13 @@ namespace Diabhelp.Core
     public sealed partial class CatalogueModuleLayout : UserControl
     {
 
-        IModule module;
-      public CatalogueModuleLayout(IModule module)
+        IModuleInfo module;
+      public CatalogueModuleLayout(IModuleInfo module)
         {
             this.InitializeComponent();
             Debug.WriteLine("CatalogueLayout : ModuleLayout init 2nd constructor");
             this.module = module;
-            this.module.setFrame(Window.Current.Content as Frame);
-            this.moduleName.Text = module.getName();
+            this.moduleName.Text = module.Name;
             Debug.WriteLine("CatalogueLayout : ModuleLayout init 2nd constructor end");
 
         }
@@ -39,7 +38,7 @@ namespace Diabhelp.Core
         void Image_Loaded(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine("CatalogueLayout : Enter Image loaded");
-            BitmapImage bitmapImage = new BitmapImage(this.module.getIconSource());
+            BitmapImage bitmapImage = new BitmapImage(this.module.IconSource);
             this.moduleIcon.Source = bitmapImage;
             Debug.WriteLine("End Image loaded");
 

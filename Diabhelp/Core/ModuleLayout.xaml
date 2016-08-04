@@ -14,6 +14,6 @@
 
         <Image x:Name="moduleIcon" ImageFailed="onImageFailed"  Loaded="Image_Loaded" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" Width="100" Height="100"/>
         <TextBlock x:Name="moduleName" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="ModuleName" VerticalAlignment="Center"/>
-        <Button x:Name="launchModuleBtn" Click="launchModuleBtn_Click"  Content="Launch" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
+        <Button x:Name="launchModuleBtn" Click="launchModuleBtn_Click"  Content="Lancer" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
     </StackPanel>
 </UserControl>
