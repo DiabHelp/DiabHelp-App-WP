@@ -95,11 +95,19 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Core\ApiClient.cs" />
+    <Compile Include="Core\Api\ResponseModels\GetProfileResponseBody.cs" />
+    <Compile Include="Core\Api\ResponseModels\InscriptionResponseBody.cs" />
+    <Compile Include="Core\Api\ResponseModels\LoginResponseBody.cs" />
+    <Compile Include="Core\Api\ResponseModels\SetProfileResponseBody.cs" />
     <Compile Include="Core\CatalogueModuleLayout.xaml.cs">
       <DependentUpon>CatalogueModuleLayout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\CatalogueScreen.xaml.cs">
       <DependentUpon>CatalogueScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\InscriptionScreen.xaml.cs">
+      <DependentUpon>InscriptionScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>
@@ -181,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Core\CatalogueScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Core\InscriptionScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

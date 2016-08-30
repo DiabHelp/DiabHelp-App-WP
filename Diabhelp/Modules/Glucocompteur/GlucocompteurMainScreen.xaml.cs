@@ -29,7 +29,6 @@ namespace Diabhelp.Modules.Glucocompteur
     /// </summary>
     public sealed partial class GlucocompteurMainScreen : Page
     {
-        //TODO : Screen size :  Classe publique globale OU ressource comme android si possible
         int ROW_SIZE = 3;
 
         private List<StackPanel> nestedPaneList;
@@ -54,6 +53,7 @@ namespace Diabhelp.Modules.Glucocompteur
 
         private void menuButton_Click(object sender, RoutedEventArgs e)
         {
+            // Not yet implemented
             mainScreenFrame.Navigate(typeof(GlucocompteurMenuScreen));
         }
 

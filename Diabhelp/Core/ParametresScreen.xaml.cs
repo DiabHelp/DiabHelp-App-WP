@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Diabhelp.Core.Api.ResponseModels;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,14 +24,24 @@ namespace Diabhelp.Core
     /// </summary>
     public sealed partial class ParametresScreen : Page
     {
+        private LoginResponseBody loginInfo;
+
         public ParametresScreen()
         {
             this.InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            Debug.WriteLine("ParametresScreen::OnNavigatedTo");
+            loginInfo = e.Parameter as LoginResponseBody;
+
+        }
+
         private void profileButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(ProfilScreen));
+            this.Frame.Navigate(typeof(ProfilScreen), loginInfo);
         }
 
         private void faqButton_Click(object sender, RoutedEventArgs e)

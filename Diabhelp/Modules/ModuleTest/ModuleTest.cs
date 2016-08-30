@@ -20,9 +20,7 @@ namespace Diabhelp.Modules.ModuleTest
         private Uri iconSource = null;
         public ModuleTest()
         {
-            Debug.WriteLine("ModuleTest init");
             iconSource = new Uri("ms-appx:///Assets/diab_logo_transparent.png");
-            Debug.WriteLine("ModuleTest init ok");
         }
     
 
@@ -38,29 +36,18 @@ namespace Diabhelp.Modules.ModuleTest
 
         public void start()
         {
-            Debug.WriteLine("ModuleTest navigate");
             if (this.frame != null)
                 this.frame.Navigate(typeof(ModuleTestPage));
-            else
-                Debug.WriteLine("You fucked up : this.frame of ModuleTest is null");
-            Debug.WriteLine("ModuleTest navigate OK");
         }
 
         public void start(Frame frame)
         {
-            Debug.WriteLine("ModuleTest navigate 2nd function");
             if (frame != null)
                 frame.Navigate(typeof(ModuleTestPage));
-            else
-                Debug.WriteLine("You fucked up : this.frame of ModuleTest is null");
-            Debug.WriteLine("ModuleTest navigate OK");
         }
 
         public void setFrame(Frame frame)
-        {
-            Debug.WriteLine("ModuleTest setFrame");
-            if (frame == null)
-                Debug.WriteLine("WTF : Tu me donne une frame nulle dans setFrame, ok, connard");
+        { 
             this.frame = frame;
         }
     }

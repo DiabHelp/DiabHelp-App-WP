@@ -8,7 +8,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBox x:Name="textBox" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="Pas de menu favori" VerticalAlignment="Center"/>
+        <TextBlock x:Name="textBox" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="Pas de menu favori" VerticalAlignment="Center"/>
 
     </Grid>
 </Page>

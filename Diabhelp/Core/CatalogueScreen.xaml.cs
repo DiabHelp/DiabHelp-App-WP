@@ -30,7 +30,7 @@ namespace Diabhelp.Core
 
         private List<StackPanel> nestedPaneList;
         private List<IModule> moduleList;
-        private ArrayList loadedModuleList = new ArrayList();
+
         Frame mainScreenFrame;
 
         public CatalogueScreen()
@@ -38,35 +38,26 @@ namespace Diabhelp.Core
             this.InitializeComponent();
         }
 
-        //TODO : GROS cleanup
-        // Move la logique de load/display(?) dans une classe à part ?
         private void displayModuleList(List<IModuleInfo> moduleList)
         {
             if (nestedPaneList == null)
                 nestedPaneList = new List<StackPanel>();
-            Debug.WriteLine("enter displayModuleList");
             int size = moduleList.Count;
             int rows = (int)Math.Ceiling((decimal)size / ROW_SIZE);
-            Debug.WriteLine("displayModuleList : calculated row size = " + rows);
-
             for (int n = 0; n < rows; n++)
             {
                 StackPanel newPanel = new StackPanel();
                 newPanel.Orientation = Orientation.Horizontal;
                 nestedPaneList.Add(newPanel);
-                Debug.WriteLine("displayModuleList : add stackpannel nb " + n);
             }
             if (moduleList != null && moduleList.Count > 0)
             {
                 for (int i = 0; i < moduleList.Count; i++)
                 {
                     IModuleInfo module = moduleList[i] as IModuleInfo;
-                    Debug.WriteLine("enter foreach moduleList : ");
-                    Debug.WriteLine(module.Name);
 
                     // Calcul de la position du ModuleLayout
                     int position = (int)Math.Ceiling((decimal)(i + 1) / ROW_SIZE) - 1;
-                    Debug.WriteLine("ModuleLayout position : " + position);
 
                     // On crée l'objet graphique lié au module, et on lui donne sa classe
                     CatalogueModuleLayout view = new CatalogueModuleLayout(module);
@@ -76,7 +67,6 @@ namespace Diabhelp.Core
                     view.activateCheckBox.Unchecked+= (sender, e) => ModuleLoader.Instance.removeModule(module.Name);
                     view.activateCheckBox.IsChecked = module.Loaded;
                     nestedPaneList[position].Children.Add(view);
-                    Debug.WriteLine("end foreach moduleList");
 
                 }
             }

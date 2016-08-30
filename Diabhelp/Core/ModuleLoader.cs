@@ -13,16 +13,14 @@ namespace Diabhelp.Core
     public class ModuleLoader
     {
         // Get la liste des modules activés
-        //TODO : Get ça depuis le catalogue.
-        // (JSON ? AppData ?)
         //NOTE : pour le moment on prend le nom pour différencier les modules vu qu'il y en aura pas avec un nom identique
         // Si le module existe pas ça crash pas mais ça display des trucs chelou
         //private ArrayList loadedModules = new ArrayList { "ModuleTest", "ModuleTest2"};
 
         // Ca doit être get depuis l'API ça
-        private ArrayList availableModules = new ArrayList { "Glucocompteur", "ModuleTest", "ModuleTest2", "ModuleTest3"}; //Id au lieu de nom ? Surement vu que l'api doit faire ca
-        private ArrayList loadedModules = null;
-        Boolean moduleListChanged = false;
+        private List<String> availableModules = new List<String> { "Glucocompteur", "ModuleTest", "ModuleTest2", "ModuleTest3"}; //Id au lieu de nom ? Surement vu que l'api doit faire ca
+        private List<String> loadedModules = null;
+        bool moduleListChanged = false;
 
         Windows.Storage.ApplicationDataContainer localSettings;
         // Alors oui on fait un Singleton, mais en l'occurence c'est adapté
@@ -33,14 +31,15 @@ namespace Diabhelp.Core
             localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             if (localSettings.Values["LoadedModules"] == null)
             {
+
                 Debug.WriteLine("LoadedModule Settings null");
-                loadedModules = new ArrayList();
+                loadedModules = new List<String>();
                 //Used to generate defaults loaded modules
                 //localSettings.Values["LoadedModules"] = new string[] { "ModuleTest", "ModuleTest2" };
 
             }
             else
-                loadedModules = new ArrayList(localSettings.Values["LoadedModules"] as string[]);
+                loadedModules = new List<String>(localSettings.Values["LoadedModules"] as string[]);
         }
 
         public static ModuleLoader Instance
@@ -54,13 +53,10 @@ namespace Diabhelp.Core
                 return instance;
             }
         }
-
-        // GROS TODO PUTAIN SARACE : ModuleInfo qui demande pas d'instancier le module
         
-        private List<IModuleInfo> createIModuleInfoList(ArrayList toCreate)
+        private List<IModuleInfo> createIModuleInfoList(List<String> toCreate)
         {
             List<IModuleInfo> moduleInfoList = new List<IModuleInfo>();
-            Debug.WriteLine("enter createIModuleInfoList");
 
             IModuleInfo module;
 
@@ -68,9 +64,9 @@ namespace Diabhelp.Core
 
             foreach (String name in toCreate)
             {
-                Debug.WriteLine("Loading module Info: " + name);
-                String debug = "Diabhelp.Modules." + name + "." + name + "Info";
-                Debug.WriteLine("Test type = " + debug);
+                //Debug.WriteLine("Loading module Info: " + name);
+                //String debug = "Diabhelp.Modules." + name + "." + name + "Info";
+                //Debug.WriteLine("Test type = " + debug);
                 Type type = Type.GetType("Diabhelp.Modules." + name + "." + name + "Info");
                 if (type != null)
                 {
@@ -87,10 +83,9 @@ namespace Diabhelp.Core
             return moduleInfoList;
         }
 
-        private List<IModule> createIModuleList(ArrayList toCreate)
+        private List<IModule> createIModuleList(List<String> toCreate)
         {
             List<IModule> moduleList = new List<IModule>();
-            Debug.WriteLine("enter getLoadedModules");
 
             IModule module;
 
@@ -98,7 +93,7 @@ namespace Diabhelp.Core
 
             foreach (String name in toCreate)
             {
-                Debug.WriteLine("Loading module : " + name);
+                //Debug.WriteLine("Loading module : " + name);
                 Type type = Type.GetType("Diabhelp.Modules." + name + "." + name);
                 if (type != null)
                 {
@@ -113,7 +108,6 @@ namespace Diabhelp.Core
             return moduleList;
         }
 
-        // TODO pour ces 2 là : Classe ModuleInfo qui permet de get Name + Icone sans instancier tout le merdier
         public List<IModuleInfo> getLoadedModulesInfo()
         {
             return createIModuleInfoList(loadedModules);
@@ -161,12 +155,9 @@ namespace Diabhelp.Core
 
         public void saveModuleList()
         {
-            if (moduleListChanged == true)
+            if (this.moduleListChanged == true)
             {
-                string[] modules = (string[])loadedModules.ToArray(typeof(string));
-                Debug.WriteLine("Saving module list, size =  " + modules.Length);
-                foreach (string module in modules)
-                    Debug.WriteLine(module);
+                string[] modules = (string[])loadedModules.ToArray();
                 if (modules.Length > 0)
                     localSettings.Values["LoadedModules"] = modules;
                 else

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Net.Http;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
@@ -14,7 +13,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using Diabhelp.Core.Api;
+using Diabhelp.Core.Api.ResponseModels;
+using System.Threading.Tasks;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Diabhelp
@@ -30,30 +31,49 @@ namespace Diabhelp
         }
 
       
-        private async void connect_button_Click(object sender, RoutedEventArgs e)
+        public async void connect_button_Click(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("login_clicked ok");
-            this.Frame.Navigate(typeof(MainScreen));
-            return; //TODO DEBUG CACA PAS PROPRE ON VIRE CA
-            HttpClient client = new HttpClient();
 
-            try
+            Debug.WriteLine("login_clicked ok");
+
+            //this.Frame.Navigate(typeof(MainScreen));
+            //return;
+
+            string login = login_input.Text;
+            string password = pass_input.Password;
+
+            if (!string.IsNullOrWhiteSpace(login)  && !string.IsNullOrWhiteSpace(password))
             {
-                TextBox login = (TextBox)login_input;
-                TextBox password = (TextBox)pass_input;
-              
-                HttpResponseMessage response = await client.GetAsync("http://www.naquedounet.fr/");
-                response.EnsureSuccessStatusCode();
-                string responseBody = await response.Content.ReadAsStringAsync();
-                //Debug.WriteLine(responseBody);
-                if (responseBody != "")
-                {
-                    this.Frame.Navigate(typeof(MainScreen));
-                }
-            } catch(HttpRequestException ex)
-            {
-                Debug.WriteLine(ex.Message);
+                await new ApiClient().doLoginPost(login, password, connect_button_callback);
             }
+            else
+            {
+                error_lbl.Text = "Veuillez remplir tout les champs";
+            }
+
+        }
+        public void connect_button_callback(LoginResponseBody response)
+        {
+            if (response.success)
+            {
+                error_lbl.Text = "";
+                this.Frame.Navigate(typeof(MainScreen), response);
+            }
+            else
+            {
+                String errortext = "Erreur lors de la connection : ";
+                if (response.errors.Count >= 1)
+                    errortext += response.errors[0];
+                else
+                    errortext += "Erreur Inconnue";
+                error_lbl.Text = errortext;
+            }
+
+        }
+
+        private void inscription_button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Core.InscriptionScreen));
         }
     }
 }

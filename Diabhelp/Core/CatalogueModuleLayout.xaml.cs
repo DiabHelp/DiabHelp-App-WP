@@ -28,33 +28,24 @@ namespace Diabhelp.Core
       public CatalogueModuleLayout(IModuleInfo module)
         {
             this.InitializeComponent();
-            Debug.WriteLine("CatalogueLayout : ModuleLayout init 2nd constructor");
             this.module = module;
             this.moduleName.Text = module.Name;
-            Debug.WriteLine("CatalogueLayout : ModuleLayout init 2nd constructor end");
-
         }
 
         void Image_Loaded(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("CatalogueLayout : Enter Image loaded");
             BitmapImage bitmapImage = new BitmapImage(this.module.IconSource);
             this.moduleIcon.Source = bitmapImage;
-            Debug.WriteLine("End Image loaded");
-
         }
 
         void onImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
             Debug.WriteLine("CatalogueLayout : Enter onImageFailed : " + e.ErrorMessage);
             BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///Assets/diab_logo_transparent.png"));
-            this.moduleIcon.Source = bitmapImage;
-            Debug.WriteLine("CatalogueLayout : End onImagedFailed");
         }
 
         private void activateCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("CatalogueModuleLayout::ActivateCheckBox_Checked");
         }
     }
 }

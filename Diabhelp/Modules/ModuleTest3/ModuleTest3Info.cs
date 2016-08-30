@@ -16,7 +16,7 @@ namespace Diabhelp.Modules.ModuleTest3
         public ModuleTest3Info()
         {
             this.name = "ModuleTest3";
-            this.iconSource = new Uri("ms-appx:///Assets/diab_logo_transparent.png"); // TODO : Setup l'iconSource correctement via API (?)
+            this.iconSource = new Uri("ms-appx:///Assets/diab_logo_transparent.png");
         }
 
         string IModuleInfo.Name

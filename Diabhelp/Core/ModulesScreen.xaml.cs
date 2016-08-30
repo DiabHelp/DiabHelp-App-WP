@@ -43,35 +43,27 @@ namespace Diabhelp.Core
         {
             if (nestedPaneList == null)
                 nestedPaneList = new List<StackPanel>();
-            Debug.WriteLine("enter displayModuleList");
             int size = moduleList.Count;
             int rows = (int)Math.Ceiling((decimal)size / ROW_SIZE);
-            Debug.WriteLine("displayModuleList : calculated row size = " + rows);
 
             for (int n = 0; n < rows; n++)
             {
                 StackPanel newPanel = new StackPanel();
                 newPanel.Orientation = Orientation.Horizontal;
                 nestedPaneList.Add(newPanel);
-                Debug.WriteLine("displayModuleList : add stackpannel nb " + n);
             }
             if (moduleList != null && moduleList.Count > 0)
             {
                 for (int i = 0; i < moduleList.Count; i++)
                 {
                     IModule module = moduleList[i] as IModule;
-                    Debug.WriteLine("enter foreach moduleList : ");
-                    Debug.WriteLine(module.getName());
 
                     // Calcul de la position du ModuleLayout
                     int position = (int)Math.Ceiling((decimal)(i + 1) / ROW_SIZE) - 1;
-                    Debug.WriteLine("ModuleLayout position : " + position);
 
                     // On crée l'objet graphique lié au module, et on lui donne sa classe
                     ModuleLayout view = new ModuleLayout(module);
                     nestedPaneList[position].Children.Add(view);
-                    Debug.WriteLine("end foreach moduleList");
-
                 }
             }
             foreach (StackPanel subPanel in nestedPaneList)
@@ -87,7 +79,6 @@ namespace Diabhelp.Core
             ModuleLoader moduleLoader = e.Parameter as ModuleLoader;
             if (moduleLoader != null)
             {
-                Debug.WriteLine("ModuleScreen::displayModuleList");
                 // Ici c'est ok d'instancier le module vu que c'est pour launch
                 displayModuleList(moduleLoader.getLoadedModules());
             }
