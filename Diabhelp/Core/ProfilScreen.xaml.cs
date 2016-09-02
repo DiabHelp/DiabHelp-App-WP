@@ -50,7 +50,8 @@ namespace Diabhelp.Core
                 lastNameInput.Text = user.lastname;
                 firstNameInput.Text = user.firstname;
                 DateTime birthdate = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-                birthdate = birthdate.AddSeconds(user.birthdate);
+                if (user.birthdate != null)
+                    birthdate = birthdate.AddSeconds(user.birthdate.Value);
                 birthdateInput.Text = birthdate.ToString("dd/MM/yyyy");
                 emailInput.Text = user.email;
                 phoneInput.Text = user.phone;
