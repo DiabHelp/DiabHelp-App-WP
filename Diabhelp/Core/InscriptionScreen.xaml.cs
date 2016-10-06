@@ -52,7 +52,6 @@ namespace Diabhelp.Core
                     role = "ROLE_DOCTOR";
                 else
                     role = "ROLE_PROCHE";
-                error_lbl.Text = "ok ok on fait l'inscription, role = " + role;
                 new ApiClient().doInscription(login_input.Text, email_input.Text, password_input.Password, role, firstname_input.Text, lastname_input.Text, inscription_button_callback);
             }
         }

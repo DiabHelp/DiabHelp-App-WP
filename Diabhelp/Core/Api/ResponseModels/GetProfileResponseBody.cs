@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,8 @@ namespace Diabhelp.Core.Api.ResponseModels
             public string lastname { get; set; }
             public string organisme { get; set; }
             public string phone { get; set; }
-            public int birthdate { get; set; }
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public int? birthdate { get; set; }
             public int id { get; set; }
             public string username { get; set; }
             public string usernameCanonical { get; set; }
