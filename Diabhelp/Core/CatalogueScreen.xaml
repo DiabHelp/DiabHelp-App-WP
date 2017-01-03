@@ -7,6 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel x:Name="modulesPanel" Background="#FF50AC36" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="630" Width="350"/>
+    <StackPanel x:Name="modulesPanel"  HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="630" Width="350"/>
 
 </Page>

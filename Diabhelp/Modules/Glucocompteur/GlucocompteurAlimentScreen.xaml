@@ -6,18 +6,34 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <local:StringFormatConverter x:Name="StringFormat"/>
+    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="10,10,10,13">
         <StackPanel Margin="0,10" VerticalAlignment="Top" Padding="0">
-            <Button x:Name="addMenuBtn" Content="AJOUTER LE MENU AUX FAVORIS" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" FontWeight="Bold" Background="#FF078B87" Foreground="White"/>
+            <Button x:Name="addMenuBtn" Content="AJOUTER LE MENU AUX FAVORIS" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" FontWeight="Bold" Background="#FF078B87" Foreground="White" Click="addMenuBtn_Click"/>
             <TextBlock x:Name="totalWeightLbl" HorizontalAlignment="Center" Margin="0,3" TextWrapping="Wrap" Text="Poids Total :" VerticalAlignment="Top"/>
             <TextBlock x:Name="totalGlucidsLbl" TextWrapping="Wrap" Text="Glucide Totaux : " HorizontalAlignment="Center"/>
-            <Button x:Name="eraseMenuBtn" Content="EFFACER LE MENU" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Margin="0,3">
+            <Button x:Name="eraseMenuBtn" Content="EFFACER LE MENU" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Margin="0,3" Click="eraseMenuBtn_Click">
                 <Button.Background>
                     <SolidColorBrush Color="{StaticResource Background_Color_Diabhelp}"/>
                 </Button.Background>
             </Button>
-            <AutoSuggestBox x:Name="alimentInput" Text="" Margin="20,0" TextChanged="alimentInput_TextChanged" SuggestionChosen="alimentInput_SuggestionChosen" DisplayMemberPath="alimentname"/>
+
+            <TextBlock x:Name="currentMenu_lbl" Text="Menu actuel :" HorizontalAlignment="Center"/>
+            <ListBox x:Name="alimentList" Margin="0,15" ItemsSource="{Binding}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock x:Name="alimentName" Text="{Binding alimentname}"></TextBlock>
+                            <StackPanel Orientation="Horizontal" Margin="20,5">
+                                <TextBlock Margin="5" Text="{Binding Path=weight, Converter={StaticResource ResourceKey=StringFormat}, ConverterParameter='Quantité: {0} grammes'}" />
+                                <TextBlock Margin="5" Text="{Binding Path=totalGlucids, Converter={StaticResource ResourceKey=StringFormat}, ConverterParameter='Glucides: {0} grammes'}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
             <Button x:Name="addAlimentBtn" Content="AJOUTER UN ALIMENT" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Margin="0,3" Click="addAlimentBtn_Click">
                 <Button.Background>
                     <SolidColorBrush Color="{StaticResource Background_Color_Diabhelp}"/>

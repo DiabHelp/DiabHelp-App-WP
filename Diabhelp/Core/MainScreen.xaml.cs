@@ -55,13 +55,11 @@ namespace Diabhelp
             base.OnNavigatedFrom(e);
         }
 
-        //TODO : check si on y est déjà
         private void accueilButton_Click(object sender, RoutedEventArgs e)
         {
             mainScreenFrame.Navigate(typeof(Core.ModulesScreen), ModuleLoader.Instance);
         }
 
-        //TODO : check si on y est déjà
         private void catalogueButton_Click(object sender, RoutedEventArgs e)
         {
             mainScreenFrame.Navigate(typeof(Core.CatalogueScreen));

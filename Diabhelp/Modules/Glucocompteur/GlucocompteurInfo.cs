@@ -10,12 +10,14 @@ namespace Diabhelp.Modules.Glucocompteur
     {
         // Internal Variables
         private String name;
+        private String displayMame;
         private Uri iconSource;
         private Boolean loaded;
 
         public GlucocompteurInfo()
         {
             this.name = "Glucocompteur";
+            this.displayMame = "Glucocompteur";
             this.iconSource = new Uri("ms-appx:///Assets/diab_logo_transparent.png");
         }
 
@@ -24,6 +26,14 @@ namespace Diabhelp.Modules.Glucocompteur
             get
             {
                 return name;
+            }
+        }
+
+        string IModuleInfo.DisplayName
+        {
+            get
+            {
+                return displayMame;
             }
         }
 

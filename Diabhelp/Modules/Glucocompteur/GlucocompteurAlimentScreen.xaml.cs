@@ -1,12 +1,14 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -17,81 +19,62 @@ namespace Diabhelp.Modules.Glucocompteur
     /// </summary>
     public sealed partial class GlucocompteurAlimentScreen : Page
     {
-        List<String> fakeDB = new List<string>() { "Alim1", "Alim2", "Alim3", "Alim4", "Alim5", "Alim6" };
-        SQLiteConnection db;
-        public String fieldObjectName = "alimentname";
-        public String fieldObjectGlucides = "Glucides";
-        public String tableName = "aliments_search";
-        public List<Aliment> alimlist = new List<Aliment>();
-
-        public Aliment selectedAliment { get; private set; }
-
-        private async void loadAlimentsDB()
-        {
-            string DBFile = @"Assets\aliments.db";
-            StorageFolder InstallationFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            StorageFile file = await InstallationFolder.GetFileAsync(DBFile);
-            db = new SQLiteConnection(file.Path);
-
-        }
+        SQLiteConnection db = null;
+        public ObservableCollection<Aliment> currentMenu = new ObservableCollection<Aliment>();
+        private GlucocompteurAddAliment alimentDialog;
+        private GlucocompteurMainScreen parent;
 
         public GlucocompteurAlimentScreen()
         {
             this.InitializeComponent();
-            Debug.WriteLine("Open file blabla");
-            string DBPath = @"Assets\aliments.db";
-            FileStream fs = File.OpenRead(DBPath);
-            if (fs == null)
+
+            alimentDialog = new GlucocompteurAddAliment();
+            alimentList.DataContext = currentMenu;
+        }
+
+        private async void addAlimentBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDialogResult result = await alimentDialog.ShowAsync();
+            Aliment selected;
+            if (result == ContentDialogResult.Primary)
             {
-                Debug.WriteLine("Rate openfile");
-                return;
+                selected = alimentDialog.selectedAliment;
+                Debug.WriteLine("Selected aliment : " + selected.alimentname + " glucides = " + selected.Glucides + " qty = " + selected.weight);
+                currentMenu.Add(selected);
             }
-            loadAlimentsDB();
-            alimentInput.ItemsSource = alimlist;
+            else
+                Debug.WriteLine("Cancel addAliment");
         }
 
-        private void addAlimentBtn_Click(object sender, RoutedEventArgs e)
+        private void eraseMenuBtn_Click(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("Adding aliment : " + alimentInput.Text);
+            currentMenu.Clear();
         }
 
-        private List<Aliment> getAlimListFromDB(String input)
+        private async void addMenuBtn_Click(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("Try getAlimList for input: " + input);
+            GlucocompteurSaveMenu menuSave = new GlucocompteurSaveMenu();
 
-            string sql = "";
-            input= input.Replace("'", "''").Replace("\"", "\"\"");
-            sql += "SELECT alimentname, Glucides FROM " + tableName;
-            sql += " WHERE " + fieldObjectName + " LIKE '%" + input + "%'";
-            sql += " ORDER BY " + fieldObjectName + "='" + input + "' DESC,";
-            sql += fieldObjectName + " LIKE '" + input + "%' DESC,";
-            sql += fieldObjectName + " LIKE '%" + input + "%' DESC";
-            sql += " LIMIT 8";
+            ContentDialogResult result = await menuSave.ShowAsync();
 
-            List<Aliment> newalimlist = db.Query<Aliment>(sql);
-            foreach (Aliment alim in newalimlist)
+            if (result == ContentDialogResult.Primary)
             {
-                Debug.WriteLine("Name : " + alim.alimentname + ", glucides : " + alim.Glucides);
+                Menu toAdd = new Menu(menuSave.menuName, currentMenu);
+                parent.addToMenus(toAdd);
+                currentMenu = new ObservableCollection<Aliment>();
             }
-            return newalimlist;
         }
 
-        private void alimentInput_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            base.OnNavigatedFrom(e);
+            Debug.WriteLine("ModuleScreen::OnNavigatedTo");
+            parent = e.Parameter as GlucocompteurMainScreen;
+            if (this.db == null)
             {
-                //sender.ItemsSource = fakeDB.Where(s => s.Contains(sender.Text));
-                alimlist = getAlimListFromDB(sender.Text);
-                sender.ItemsSource = alimlist;
+                this.db = parent.getAlimentDB();
+                alimentDialog.setDBContent(db);
             }
-
-        }
-
-        private void alimentInput_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
-        {
-            selectedAliment = (Aliment)args.SelectedItem;
-            sender.Text = selectedAliment.alimentname;
-            Debug.WriteLine("Selected aliment : " + selectedAliment.alimentname + " glucides = " + selectedAliment.Glucides);
         }
     }
 }

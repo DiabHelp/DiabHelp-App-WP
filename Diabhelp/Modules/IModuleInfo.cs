@@ -12,6 +12,7 @@ namespace Diabhelp.Modules
     public interface IModuleInfo
     {
         String Name { get;}
+        String DisplayName { get;}
         Uri IconSource { get; }
         Boolean Loaded { get; set; }
     }

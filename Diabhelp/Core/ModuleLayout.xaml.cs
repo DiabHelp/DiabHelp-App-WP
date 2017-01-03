@@ -29,7 +29,7 @@ namespace Diabhelp
             this.InitializeComponent();
             this.module = module;
             this.module.setFrame(Window.Current.Content as Frame);
-            this.moduleName.Text = module.getName();
+            this.moduleName.Text = module.getDisplayName();
         }
 
         void Image_Loaded(object sender, RoutedEventArgs e)

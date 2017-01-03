@@ -4,18 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Diabhelp.Modules.ModuleTest2
+namespace Diabhelp.Modules.CarnetSuivi
 {
-    class ModuleTest2Info : IModuleInfo
+    class CarnetSuiviInfo : IModuleInfo
     {
         // Internal Variables
         private String name;
+        private String displayName;
         private Uri iconSource;
         private Boolean loaded;
 
-        public ModuleTest2Info()
+        public CarnetSuiviInfo()
         {
-            this.name = "ModuleTest2";
+            this.name = "CarnetSuivi";
+            this.displayName = "Carnet de Suivi";
             this.iconSource = new Uri("ms-appx:///Assets/diab_logo_transparent.png");
         }
 
@@ -24,6 +26,14 @@ namespace Diabhelp.Modules.ModuleTest2
             get
             {
                 return name;
+            }
+        }
+
+        string IModuleInfo.DisplayName
+        {
+            get
+            {
+                return displayName;
             }
         }
 

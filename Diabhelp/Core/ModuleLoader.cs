@@ -13,17 +13,12 @@ namespace Diabhelp.Core
     public class ModuleLoader
     {
         // Get la liste des modules activés
-        //NOTE : pour le moment on prend le nom pour différencier les modules vu qu'il y en aura pas avec un nom identique
-        // Si le module existe pas ça crash pas mais ça display des trucs chelou
-        //private ArrayList loadedModules = new ArrayList { "ModuleTest", "ModuleTest2"};
 
-        // Ca doit être get depuis l'API ça
-        private List<String> availableModules = new List<String> { "Glucocompteur", "ModuleTest", "ModuleTest2", "ModuleTest3"}; //Id au lieu de nom ? Surement vu que l'api doit faire ca
+        private List<String> availableModules = new List<String> { "Glucocompteur", "CarnetSuivi"};
         private List<String> loadedModules = null;
         bool moduleListChanged = false;
 
         Windows.Storage.ApplicationDataContainer localSettings;
-        // Alors oui on fait un Singleton, mais en l'occurence c'est adapté
         private static ModuleLoader instance;
 
         private ModuleLoader()
@@ -31,12 +26,8 @@ namespace Diabhelp.Core
             localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             if (localSettings.Values["LoadedModules"] == null)
             {
-
                 Debug.WriteLine("LoadedModule Settings null");
                 loadedModules = new List<String>();
-                //Used to generate defaults loaded modules
-                //localSettings.Values["LoadedModules"] = new string[] { "ModuleTest", "ModuleTest2" };
-
             }
             else
                 loadedModules = new List<String>(localSettings.Values["LoadedModules"] as string[]);
@@ -64,9 +55,6 @@ namespace Diabhelp.Core
 
             foreach (String name in toCreate)
             {
-                //Debug.WriteLine("Loading module Info: " + name);
-                //String debug = "Diabhelp.Modules." + name + "." + name + "Info";
-                //Debug.WriteLine("Test type = " + debug);
                 Type type = Type.GetType("Diabhelp.Modules." + name + "." + name + "Info");
                 if (type != null)
                 {
@@ -75,7 +63,7 @@ namespace Diabhelp.Core
                     moduleInfoList.Add(module);
                     
                 }
-                else /* DEBUG */
+                else
                 {
                     Debug.WriteLine("Failed to load module Info : " + name);
                 }
@@ -93,14 +81,14 @@ namespace Diabhelp.Core
 
             foreach (String name in toCreate)
             {
-                //Debug.WriteLine("Loading module : " + name);
+                Debug.WriteLine("ModuleString : " + "Diabhelp.Modules." + name + "." + name);
                 Type type = Type.GetType("Diabhelp.Modules." + name + "." + name);
                 if (type != null)
                 {
                     module = (IModule)Activator.CreateInstance(type);
                     moduleList.Add(module);
                 }
-                else /* DEBUG */
+                else
                 {
                     Debug.WriteLine("Failed to load module : " + name);
                 }

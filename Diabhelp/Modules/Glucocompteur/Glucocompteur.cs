@@ -12,6 +12,7 @@ namespace Diabhelp.Modules.Glucocompteur
     {
         private Frame frame;
         private String name = "Glucocompteur";
+        private String displayName = "Glucocompteur";
         private Uri iconSource = null;
         public Glucocompteur()
         {
@@ -22,6 +23,11 @@ namespace Diabhelp.Modules.Glucocompteur
         public string getName()
         {
             return name;
+        }
+
+        public string getDisplayName()
+        {
+            return displayName;
         }
 
         public Uri getIconSource()

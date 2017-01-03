@@ -131,8 +131,26 @@
     <Compile Include="Core\ProfilScreen.xaml.cs">
       <DependentUpon>ProfilScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\CarnetSuivi\CarnetSuivi.cs" />
+    <Compile Include="Modules\CarnetSuivi\CarnetSuiviEntreesScreen.xaml.cs">
+      <DependentUpon>CarnetSuiviEntreesScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\CarnetSuivi\CarnetSuiviInfo.cs" />
+    <Compile Include="Modules\CarnetSuivi\CarnetSuiviMainScreen.xaml.cs">
+      <DependentUpon>CarnetSuiviMainScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\CarnetSuivi\CarnetSuiviStatistiquesScreen.xaml.cs">
+      <DependentUpon>CarnetSuiviStatistiquesScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\CarnetSuivi\Entry.cs" />
     <Compile Include="Modules\Glucocompteur\Aliment.cs" />
+    <Compile Include="Modules\Glucocompteur\AlimentDisplay.xaml.cs">
+      <DependentUpon>AlimentDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Glucocompteur\Glucocompteur.cs" />
+    <Compile Include="Modules\Glucocompteur\GlucocompteurAddAliment.xaml.cs">
+      <DependentUpon>GlucocompteurAddAliment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Glucocompteur\GlucocompteurAlimentScreen.xaml.cs">
       <DependentUpon>GlucocompteurAlimentScreen.xaml</DependentUpon>
     </Compile>
@@ -143,27 +161,18 @@
     <Compile Include="Modules\Glucocompteur\GlucocompteurMenuScreen.xaml.cs">
       <DependentUpon>GlucocompteurMenuScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Glucocompteur\GlucocompteurSaveMenu.xaml.cs">
+      <DependentUpon>GlucocompteurSaveMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Glucocompteur\Menu.cs" />
+    <Compile Include="Modules\Glucocompteur\StringFormatConverter.cs" />
     <Compile Include="Modules\IModule.cs" />
     <Compile Include="Modules\IModuleInfo.cs" />
-    <Compile Include="Modules\ModuleTest2\ModuleTest2Info.cs" />
-    <Compile Include="Modules\ModuleTest3\ModuleTest3.cs" />
-    <Compile Include="Modules\ModuleTest3\ModuleTest3Page.xaml.cs">
-      <DependentUpon>ModuleTest3Page.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\ModuleTest2\ModuleTest2.cs" />
-    <Compile Include="Modules\ModuleTest2\ModuleTest2Page.xaml.cs">
-      <DependentUpon>ModuleTest2Page.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\ModuleTest3\ModuleTest3Info.cs" />
-    <Compile Include="Modules\ModuleTest\ModuleTest.cs" />
-    <Compile Include="Modules\ModuleTest\ModuleTestInfo.cs" />
-    <Compile Include="Modules\ModuleTest\ModuleTestPage.xaml.cs">
-      <DependentUpon>ModuleTestPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Core\SplashScreen.xaml.cs">
       <DependentUpon>SplashScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\StringFormatConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -224,6 +233,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modules\CarnetSuivi\CarnetSuiviEntreesScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\CarnetSuivi\CarnetSuiviMainScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\CarnetSuivi\CarnetSuiviStatistiquesScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Glucocompteur\AlimentDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Glucocompteur\GlucocompteurAddAliment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\Glucocompteur\GlucocompteurAlimentScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -236,15 +265,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Modules\ModuleTest3\ModuleTest3Page.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Modules\ModuleTest2\ModuleTest2Page.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Modules\ModuleTest\ModuleTestPage.xaml">
+    <Page Include="Modules\Glucocompteur\GlucocompteurSaveMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -255,11 +276,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Values\" />
-  </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="SQLite.UAP.2015, Version=3.8.11.1">
-      <Name>SQLite for Universal App Platform</Name>
-    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

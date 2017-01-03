@@ -29,7 +29,7 @@ namespace Diabhelp.Core
         {
             this.InitializeComponent();
             this.module = module;
-            this.moduleName.Text = module.Name;
+            this.moduleName.Text = module.DisplayName;
         }
 
         void Image_Loaded(object sender, RoutedEventArgs e)

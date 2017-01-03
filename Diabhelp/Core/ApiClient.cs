@@ -33,6 +33,7 @@ namespace Diabhelp.Core.Api
             };
             HttpFormUrlEncodedContent content = new HttpFormUrlEncodedContent(keyValues);
             HttpResponseMessage response = await client.PostAsync(requestUri, content);
+            Debug.WriteLine(response.Content.ToString());
             LoginResponseBody loginResponse = JsonConvert.DeserializeObject<LoginResponseBody>(response.Content.ToString());
             callback(loginResponse);
         }

@@ -36,12 +36,13 @@ namespace Diabhelp
 
             Debug.WriteLine("login_clicked ok");
 
+            // Debug code
             //this.Frame.Navigate(typeof(MainScreen));
             //return;
 
             string login = login_input.Text;
-            string password = pass_input.Password;
-
+            string password = pass_input.Password;    
+        
             if (!string.IsNullOrWhiteSpace(login)  && !string.IsNullOrWhiteSpace(password))
             {
                 await new ApiClient().doLoginPost(login, password, connect_button_callback);

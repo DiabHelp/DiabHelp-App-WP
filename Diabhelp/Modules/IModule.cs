@@ -14,6 +14,7 @@ namespace Diabhelp.Modules
     {
         void start();
         String getName();
+        String getDisplayName();
         Uri getIconSource();
         void setFrame(Frame frame);
 

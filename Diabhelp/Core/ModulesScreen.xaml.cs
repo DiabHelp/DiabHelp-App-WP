@@ -29,7 +29,6 @@ namespace Diabhelp.Core
     /// </summary>
     public sealed partial class ModulesScreen : Page
     {
-        //TODO : Screen size :  Classe publique globale OU ressource comme android si possible
         int ROW_SIZE = 3;
 
         private List<StackPanel> nestedPaneList;
@@ -45,6 +44,7 @@ namespace Diabhelp.Core
                 nestedPaneList = new List<StackPanel>();
             int size = moduleList.Count;
             int rows = (int)Math.Ceiling((decimal)size / ROW_SIZE);
+
 
             for (int n = 0; n < rows; n++)
             {

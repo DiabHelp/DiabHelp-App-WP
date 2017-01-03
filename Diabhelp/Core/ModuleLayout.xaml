@@ -10,7 +10,7 @@
     "
     d:DesignWidth="150">
 
-    <StackPanel Background="#FF37D353">
+    <StackPanel Padding="10">
 
         <Image x:Name="moduleIcon" ImageFailed="onImageFailed"  Loaded="Image_Loaded" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" Width="100" Height="100"/>
         <TextBlock x:Name="moduleName" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="ModuleName" VerticalAlignment="Center"/>
